@@ -10,13 +10,13 @@ let pageNumber = 1;
 
 function scheduleCronJob() {
     // Define the cron job
-    const job = cron.schedule('*/30 * * * * *', async () => {
+    const job = cron.schedule('*/30 * * * * ', async () => {
         console.log("running for every 30 seconds");
         // Get current hour
         const currentHour = new Date().getHours();
 
         // Only execute between 12 am and 6 am
-        if (currentHour >= 0 && currentHour <= 23 && pageNumber<=5000) {
+        if (currentHour >= 0 && currentHour <= 6 && pageNumber<=5000) {
             // Call the function with the current page number
            await processPage(pageNumber);
             

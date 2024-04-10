@@ -7,16 +7,16 @@ const env = require("dotenv").config().parsed;
 
 
 async function makeApiRequest(pageNumber) {
-    const apiUrl = 'http://localhost/nuSource/api/v1/migrate/studentbulktestupdate';
-    const apiKey = 'b291d4b81f41cf19f759ee5c319ef821';
-    const orgId = '2';
+    const apiUrl = 'https://abhishek-api.edmingle.com/nuSource/api/v1/migrate/studentbulktestupdate';
+    const apiKey = '89ac83aee6a931821f69953b8199f331';
+    const orgId = '1943';
 
     const headers = {                   
         'authority': 'abhishek-api.edmingle.com',
         'accept': 'application/json, text/javascript, */*; q=0.01',
         'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
-        'apikey': env.APIKEY,
-        'orgid': env.ORGID,
+        'apikey': apiKey,
+        'orgid': orgId,
         'origin': 'https://abhishek.edmingle.com',
         'referer': 'https://abhishek.edmingle.com/',
         'sec-ch-ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
@@ -37,7 +37,7 @@ async function makeApiRequest(pageNumber) {
     var JSONString = JSON.stringify(data);
     formData.append('JSONString',JSONString);
 
-    return await fetch(env.APIURL, {
+    return await fetch(apiUrl, {
         method: 'POST',
         headers: headers,
         body: formData,

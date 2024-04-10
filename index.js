@@ -73,7 +73,7 @@ app.get('/', (req, res) => {
 });
 
 // const PORT = 3000;
-
+ const PORT = 4000;
 app.listen(env.PORT, () => {
-    console.log(`Server is listening on port ${env.PORT}`);
+    console.log(`Server is listening on port ${PORT}`);
 });

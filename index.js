@@ -16,7 +16,7 @@ function scheduleCronJob() {
         const currentHour = new Date().getHours();
 
         // Only execute between 12 am and 6 am
-        if (currentHour >= 0 && currentHour <= 6 && pageNumber<=5000) {
+        if (currentHour >= 0 && currentHour <= 23 && pageNumber<=5000) {
             // Call the function with the current page number
            await processPage(pageNumber);
             

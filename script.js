@@ -78,7 +78,7 @@ async function makeApiRequestForQuiz(pageNumber) {
     var data = {};
     data['page'] =  pageNumber;
     data['per_page'] =  1;
-    data['run_migration'] =  1;
+    data['run_migration'] =  0;
     var JSONString = JSON.stringify(data);
     formData.append('JSONString',JSONString);
 

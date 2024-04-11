@@ -9,17 +9,17 @@ let pageNumber = 1;
 // let pageNumber2 = 1;
 function scheduleCronJob() {
     // Define the cron job
-    const job = cron.schedule('*/30 * * * * *', async () => {
+    const job = cron.schedule('*/30 * * * *', async () => {
         // Get current hour
         // const currentHour = new Date().getHours();
 
         const options = { timeZone: 'Asia/Kolkata' };
         const currentHour = new Date().toLocaleString('en-US', { hour: 'numeric', hour12: false, ...options });        
         // Only execute between 12 am and 6 am
-        console.log("running for every 30 min",currentHour);
+        // console.log("running for every 30 min",currentHour);
         if (currentHour >= 0 && currentHour <= 6 && pageNumber<=5000000) {
             // Call the function with the current page number
-            console.log("function calling for every 30 min");
+            // console.log("function calling for every 30 min");
 
            await processPage(pageNumber);
             

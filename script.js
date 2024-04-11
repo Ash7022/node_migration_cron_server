@@ -32,7 +32,7 @@ async function makeApiRequest(pageNumber) {
     const formData = new FormData();
     var data = {};
     data['page'] =  pageNumber;
-    data['per_page'] =  1;
+    data['per_page'] =  10000;
     data['run_migration'] =  1;
     var JSONString = JSON.stringify(data);
     formData.append('JSONString',JSONString);

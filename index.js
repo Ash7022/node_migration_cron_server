@@ -9,7 +9,7 @@ let pageNumber = 1;
 // let pageNumber2 = 1;
 function scheduleCronJob() {
     // Define the cron job
-    const job = cron.schedule('*/30 * * * * *', async () => {
+    const job = cron.schedule('*/30 * * * *', async () => {
         // Get current hour
         // const currentHour = new Date().getHours();
 

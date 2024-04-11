@@ -7,21 +7,20 @@ const app = express();
 // Variable to keep track of page number
 let pageNumber = 1;
 // let pageNumber2 = 1;
-
 function scheduleCronJob() {
     // Define the cron job
-    const job = cron.schedule('*/30 * * * * ', async () => {
-        console.log("running for every 30 seconds");
+    const job = cron.schedule('*/30 * * * *', async () => {
+        console.log("running for every 30 min");
         // Get current hour
         const currentHour = new Date().getHours();
 
         // Only execute between 12 am and 6 am
-        if (currentHour >= 0 && currentHour <= 6 && pageNumber<=5000) {
+        if (currentHour >= 0 && currentHour <= 6 && pageNumber<=5000000) {
             // Call the function with the current page number
            await processPage(pageNumber);
             
             // Increment page number for the next call
-            pageNumber++;
+            pageNumber= pageNumber+10000;
         }
     }, {
         scheduled: true,

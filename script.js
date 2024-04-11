@@ -33,7 +33,7 @@ async function makeApiRequest(pageNumber) {
     var data = {};
     data['page'] =  pageNumber;
     data['per_page'] =  1;
-    data['run_migration'] =  0;
+    data['run_migration'] =  1;
     var JSONString = JSON.stringify(data);
     formData.append('JSONString',JSONString);
 
@@ -77,7 +77,7 @@ async function makeApiRequestForQuiz(pageNumber) {
     const formData = new FormData();
     var data = {};
     data['page'] =  pageNumber;
-    data['per_page'] =  10000;
+    data['per_page'] =  1;
     data['run_migration'] =  1;
     var JSONString = JSON.stringify(data);
     formData.append('JSONString',JSONString);

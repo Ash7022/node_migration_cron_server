@@ -10,11 +10,11 @@ let pageNumber = 1;
 function scheduleCronJob() {
     // Define the cron job
     const job = cron.schedule('*/30 * * * * *', async () => {
-        console.log("running for every 30 min");
         // Get current hour
         const currentHour = new Date().getHours();
-
+        
         // Only execute between 12 am and 6 am
+        console.log("running for every 30 min",currentHour);
         if (currentHour >= 0 && currentHour <= 6 && pageNumber<=5000000) {
             // Call the function with the current page number
             console.log("function calling for every 30 min");

@@ -7,18 +7,18 @@ const env = require("dotenv").config().parsed;
 
 
 async function makeApiRequest(pageNumber) {
-    const apiUrl = 'https://abhishek-api.edmingle.com/nuSource/api/v1/migrate/studentbulktestupdate';
-    const apiKey = '89ac83aee6a931821f69953b8199f331';
-    const orgId = '1943';
+    const apiUrl = 'https://enterpriseplanportal-api.edmingle.com/nuSource/api/v1/migrate/studentbulktestupdate';
+    const apiKey = 'ef8b6c4bb1043c1b61831838ec75351f';
+    const orgId = '5131';
 
     const headers = {                   
-        'authority': 'abhishek-api.edmingle.com',
+        'authority': 'enterpriseplanportal-api.edmingle.com',
         'accept': 'application/json, text/javascript, */*; q=0.01',
         'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
         'apikey': apiKey,
         'orgid': orgId,
-        'origin': 'https://abhishek.edmingle.com',
-        'referer': 'https://abhishek.edmingle.com/',
+        'origin': 'https://enterpriseplanportal.edmingle.com',
+        'referer': 'https://enterpriseplanportal.edmingle.com/',
         'sec-ch-ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
         'sec-ch-ua-mobile': '?0',
         'sec-ch-ua-platform': '"Linux"',

@@ -19,7 +19,7 @@ function scheduleCronJob() {
         console.log("running for every 30 min",currentHour);
         if (currentHour >= 0 && currentHour <= 6 && pageNumber<=5000000) {
             // Call the function with the current page number
-            // console.log("function calling for every 30 min");
+            console.log("function calling for every 30 min");
 
            await processPage(pageNumber);
             

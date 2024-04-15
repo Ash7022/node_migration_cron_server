@@ -26,13 +26,13 @@ async function makeApiRequest(pageNumber) {
         'sec-fetch-mode': 'cors',
         'sec-fetch-site': 'same-site',
         'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
-    };
+        };
 
 
     const formData = new FormData();
     var data = {};
     data['page'] =  pageNumber;
-    data['per_page'] =  10000;
+    data['per_page'] =  2;
     data['run_migration'] =  1;
     var JSONString = JSON.stringify(data);
     formData.append('JSONString',JSONString);
@@ -82,16 +82,16 @@ async function makeApiRequestForQuiz(pageNumber) {
     var JSONString = JSON.stringify(data);
     formData.append('JSONString',JSONString);
 
-    return await fetch(apiUrl, {
+    const response = await fetch(apiUrl, {
         method: 'POST',
         headers: headers,
         body: formData,
-    })
-    .then(response => response.json())
-    .catch(error => {
-            console.error('Error for page', pageNumber, ':', error);
-            return { error: true, message: `Error occurred for page ${pageNumber}. Check console for details.` };
-        });
+    });
+    if (response.ok) {
+        return 1; // Success
+    } else {
+        return 0; // Not OK
+    }
 }
 
 exports.processPage= async (pageNumber)=> {

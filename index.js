@@ -65,13 +65,15 @@ async function scheduleCronJob() {
     // // Start the cron job
     // job.start();
     try{
+        const optionss = { timeZone: 'Asia/Kolkata' };
+            const currentHours = new Date().toLocaleString('en-US', { hour: 'numeric', hour12: false, ...optionss });
         const html = `
             <h1> migration automation has been stopped. check server api</h1>
-            <p>last_page_number ${pageNumber}</p>
+            <p>last_page_number ${pageNumber} and current time ${currentHours}</p>
         `;
         const htmlNewserver = `
             <h1> serverhas been started</h1>
-            <p>last_page_number ${pageNumber}</p>
+            <p>last_page_number ${pageNumber} and current time ${currentHours}</p>
         `;
         mailerRes = await mailerNode(htmlNewserver).catch(e => console.log(e));
         while(pageNumber<=5000000){

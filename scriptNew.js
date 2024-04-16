@@ -44,6 +44,8 @@ try{
     });
     if (response.ok) {
         return 1; // Success
+    } else if (response.status === 504) {
+        return 504; // Gateway Timeout
     } else {
         return 0; // Not OK
     }

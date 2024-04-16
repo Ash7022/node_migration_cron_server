@@ -8,7 +8,7 @@ const env = require("dotenv").config().parsed;
 const app = express();
 
 // Variable to keep track of page number
-let pageNumber = 160000;
+let pageNumber = 160500;
 let response = 0;
 let count = 0;
 let sleeptimecount = 0;        
@@ -39,38 +39,11 @@ async function mailerNode(html) {
 }
 // let pageNumber2 = 1;
 async function scheduleCronJob() {
-    // Define the cron job
-    // const job = cron.schedule('*/30 * * * * *', async () => {
-    //     // Get current hour
-    //     // const currentHour = new Date().getHours();
-
-    //     const options = { timeZone: 'Asia/Kolkata' };
-    //     const currentHour = new Date().toLocaleString('en-US', { hour: 'numeric', hour12: false, ...options });        
-    //     // Only execute between 12 am and 6 am
-    //     console.log("running for every 30 min",currentHour);
-    //     if (currentHour >= 0 && currentHour <= 6 && pageNumber<=5000000) {
-    //         // Call the function with the current page number
-    //         console.log("function calling for every 30 min");
-
-    //        await processPage(pageNumber);
-            
-    //         // Increment page number for the next call
-    //         pageNumber= pageNumber+10000;
-    //     }
-    // }, {
-    //     scheduled: true,
-    //     timezone: "Asia/Calcutta" // Replace "Your_Time_Zone" with your actual time zone
-    // });
-
-    // // Start the cron job
-    // job.start();
+    
     try{
         const optionss = { timeZone: 'Asia/Kolkata' };
             const currentHours = new Date().toLocaleString('en-US', { hour: 'numeric', hour12: false, ...optionss });
-        const html = `
-            <h1> migration automation has been stopped. check server api</h1>
-            <p>last_page_number ${pageNumber} and current time ${currentHours}</p>
-        `;
+        
         const htmlNewserver = `
             <h1> serverhas been started</h1>
             <p>last_page_number ${pageNumber} and current time ${currentHours}</p>
@@ -80,7 +53,6 @@ async function scheduleCronJob() {
             const options = { timeZone: 'Asia/Kolkata' };
             const currentHour = new Date().toLocaleString('en-US', { hour: 'numeric', hour12: false, ...options });
             // Only execute between 12 am and 6 am
-            console.log("running for every 30 min",currentHour);
             if (currentHour >= 0 && currentHour <= 6 && pageNumber<=5000000) {
 
                 const htmlNewstart = `
@@ -93,20 +65,22 @@ async function scheduleCronJob() {
 
                 }
                 // Call the function with the current page number
-                console.log("function calling for every 30 min");
                 response = await processPage(pageNumber);
-                if(response===0){
+                if(response!==1){
+                    const html = `
+            <h1>error status ${response} migration automation has been stopped. check server api.</h1>
+            <p>last_page_number ${pageNumber} and current time ${currentHours}</p>
+        `;
                     console.log("last_page_number",pageNumber);
                     mailerRes = await mailerNode(html).catch(e => console.log(e));
-
-                    process.exit(0);
+                    break;
+                    // process.exit(0);
                 }
                 // Increment page number for the next call
                 pageNumber= pageNumber+500;
                  count += 1 ; 
                  sleeptimecount +=1;
                  if(sleeptimecount >=10){
-                    // process.exit(0);
                     await new Promise(resolve => setTimeout(resolve, 300000));
                     sleeptimecount =0;
                  }       
@@ -124,17 +98,21 @@ async function scheduleCronJob() {
                 }
             }
         }
-        mailerRes = await mailerNode(html).catch(e => console.log(e));
-        process.exit(0);
+            const currentHoursss = new Date().toLocaleString('en-US', { hour: 'numeric', hour12: false, ...optionss });
+        const htmlMigrationOver = `
+        <h1>migration automation is over</h1>
+        <p>current number ${pageNumber} and current time ${currentHoursss}</p>
+    `;
+        mailerRes = await mailerNode(htmlMigrationOver).catch(e => console.log(e));
+        // console.log("migration is over");
     }
     catch(error){
         const htmlerr = `
             <h1> migration automation has been stopped. check Node server api</h1>
             <p>last_page_number ${pageNumber}</p>
         `;
-        console.log("last_page_number",pageNumber);
         mailerRes = await mailerNode(htmlerr).catch(e => console.log(e));
-        process.exit(0);
+        console.log("last_page_number",pageNumber);
     }
    
 }
@@ -145,7 +123,6 @@ async function scheduleCronJob() {
 // Call the function to schedule the cron job
 scheduleCronJob();
 
-// scheduleAnotherCronJob();
 
 app.get('/', (req, res) => {
     res.send('Hello world');

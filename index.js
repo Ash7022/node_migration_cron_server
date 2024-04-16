@@ -81,6 +81,11 @@ async function scheduleCronJob() {
                  count += 1 ; 
                  sleeptimecount +=1;
                  if(sleeptimecount >=10){
+                    const htmlmigrationCount = `
+                        <h1> ${pageNumber-500} deta has been migrated</h1>
+                        <p>last_page_number ${pageNumber}</p>
+                        `;
+                    mailerRes = await mailerNode(htmlmigrationCount).catch(e => console.log(e));
                     await new Promise(resolve => setTimeout(resolve, 300000));
                     sleeptimecount =0;
                  }       

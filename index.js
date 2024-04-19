@@ -8,7 +8,7 @@ const env = require("dotenv").config().parsed;
 const app = express();
 
 // Variable to keep track of page number
-let pageNumber = 348416;
+let pageNumber = 359490;
 let response = 0;
 let count = 0;
 let sleeptimecount = 0;        
@@ -77,6 +77,7 @@ async function scheduleCronJob() {
                     // process.exit(0);
                 }
                 // Increment page number for the next call
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 pageNumber= pageNumber+50;
                  count += 1 ; 
                  sleeptimecount +=1;

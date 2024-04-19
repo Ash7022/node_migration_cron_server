@@ -32,7 +32,7 @@ try{
     const formData = new FormData();
     var data = {};
     data['page'] =  pageNumber;
-    data['per_page'] =  200;
+    data['per_page'] =  50;
     data['run_migration'] =  1;
     var JSONString = JSON.stringify(data);
     formData.append('JSONString',JSONString);

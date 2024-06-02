@@ -8,7 +8,7 @@ const env = require("dotenv").config().parsed;
 const app = express();
 
 // Variable to keep track of page number
-let pageNumber = 427939;
+let pageNumber = 428113;
 let response = 0;
 let count = 0;
 let sleeptimecount = 0;        
@@ -77,17 +77,17 @@ async function scheduleCronJob() {
                     // process.exit(0);
                 }
                 // Increment page number for the next call
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                pageNumber= pageNumber+25;
+                // await new Promise(resolve => setTimeout(resolve, 2000));
+                pageNumber= pageNumber+1;
                  count += 1 ; 
                  sleeptimecount +=1;
                  if(sleeptimecount >=20){
                     const htmlmigrationCount = `
-                        <h1> ${pageNumber-25} deta has been migrated</h1>
+                        <h1> ${pageNumber-1} deta has been migrated</h1>
                         <p>last_page_number ${pageNumber}</p>
                         `;
                     mailerRes = await mailerNode(htmlmigrationCount).catch(e => console.log(e));
-                    await new Promise(resolve => setTimeout(resolve, 180000));
+                    await new Promise(resolve => setTimeout(resolve, 5000));
                     sleeptimecount =0;
                  }       
     

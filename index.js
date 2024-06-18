@@ -78,7 +78,7 @@ async function scheduleCronJob() {
                 }
                 // Increment page number for the next call
                 // await new Promise(resolve => setTimeout(resolve, 2000));
-                pageNumber= pageNumber+100;
+                pageNumber= pageNumber+200;
                  count += 1 ; 
                  sleeptimecount +=1;
                  if(sleeptimecount >=20){
